@@ -8,7 +8,10 @@
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www"
   },
-
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
