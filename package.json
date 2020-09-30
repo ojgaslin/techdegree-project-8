@@ -1,0 +1,26 @@
+{
+  "name": "techdegree-project-8",
+  "version": "1.0.0",
+  "description": "Sql Library Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "devstart": "nodemon ./bin/www"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "debug": "^4.1.0",
+    "express": "^4.17.1",
+    "mssql": "^6.2.3",
+    "pug": "^2.0.3",
+    "sequelize": "^6.3.5",
+    "sqlite3": "^4.0.2",
+    "sequelize-cli": "^5.5.1"
+
+  }
+}
