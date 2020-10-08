@@ -10,8 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ojgaslin/techdegree-project-8"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +25,5 @@
     "sequelize": "^6.3.5",
     "sqlite3": "^4.0.2",
     "sequelize-cli": "^5.5.1"
-
   }
 }
