@@ -6,12 +6,16 @@ module.exports = (sequelize) => {
   Book.init({
     title: {
       type: Sequelize.STRING,
+      allowNull: false,
+      notEmpty: true,
       validate: {
         is: ["^[a-z] +$", 'i'] 
       }
     },
       author: {
         type: Sequelize.STRING,
+        allowNull: false,
+        notEmpty: true,
         validate: {
            is: ["^[a-z] +$", 'i']
         }

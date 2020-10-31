@@ -1,0 +1,13 @@
+extends ../layout
+
+block content
+  h1= title
+  p Listing all books
+  p
+    a(href="/books/new") Add New Book to List
+  
+  each book in books
+    h2= book.title
+    include by_line
+    p= book.shortDescription()
+    a(href = "/books/" + book.id) Read More &rarr;
