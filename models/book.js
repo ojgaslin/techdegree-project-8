@@ -9,7 +9,9 @@ module.exports = (sequelize) => {
       allowNull: false,
       notEmpty: true,
       validate: {
-        is: ["^[a-z] +$", 'i'] 
+        notEmpty: {
+          msg: "Title is required"
+        }
       }
     },
       author: {
@@ -17,7 +19,9 @@ module.exports = (sequelize) => {
         allowNull: false,
         notEmpty: true,
         validate: {
-           is: ["^[a-z] +$", 'i']
+          notEmpty: {
+            msg: "Author is required"
+          }
         }
     },
       genre: Sequelize.STRING,

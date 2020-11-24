@@ -3,11 +3,25 @@ extends ../layout
 block content
   h1= title
   p Listing all books
-  p
+  .add-new
     a(href="/books/new") Add New Book to List
+
+  form(action="")
+    label(for='search') Search: 
+    input#search(name='search' type='text') 
+    button(type="submit") Submit
+
   
   each book in books
     h2= book.title
-    include by_line
-    p= book.shortDescription()
+    p By 
+      = book.author
+    p Genre 
+      = book.genre
     a(href = "/books/" + book.id) Read More &rarr;
+
+  - var n = 1;
+  ul
+    while n < numberOfPages
+      li
+        a(href ='/books?pageNumber=' + n)= n++

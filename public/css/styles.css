@@ -1,0 +1,59 @@
+ h1 {
+  color: #FFFAFA;
+  text-shadow: 2px 2px #000000;
+ }
+
+ h2 {
+  color: #FFFAFA;
+  text-shadow: 2px 2px #000000;
+ }
+
+ p {
+  color: #FFFAFA;
+ }
+
+ a {
+  color: #FFFAFA;
+ }
+
+ a:hover {
+    background-color: rgb(255, 247, 0);
+    color: #000000;
+  }
+
+ label {
+  color:#FFFAFA;
+  text-shadow: 2px 2px #000000;
+ }
+ 
+ body {
+ background-image: url("../library.jpg");
+ background-size: 100%;
+ }
+
+ /*scrollbar from https://css-tricks.com/almanac/properties/s/scrollbar/ */
+ body::-webkit-scrollbar {
+    width: 1em;
+  }
+   
+  body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+  }
+  .box{
+      width: 400px;
+      background-color: rgba(0,0,0, 0.8);
+  }
+  .add-new{
+      padding-bottom: 15px;
+  }
+
+  li{
+    float: left;
+    color: #FFFAFA;
+    width: 20%;
+  }
