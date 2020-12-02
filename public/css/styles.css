@@ -57,3 +57,7 @@
     color: #FFFAFA;
     width: 20%;
   }
+
+  .page-list{
+    list-style-type: none;
+  }

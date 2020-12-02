@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 var Book = require("../models").Book;
 
-
+const books = [
+  {order: [["author", "DESC"]]}
+]
 
 /*shows full list of books*/
 router.get('/', function(req, res, next) {
@@ -17,14 +19,36 @@ router.get('/', function(req, res, next) {
           book.year.toString().includes(searchTerm)
         )
       }
-      var booksPerPage = 4;
+      
       if(req.query.pageNumber) {
-        var pageNumber = req.query.pageNumber;
-        var startingIndex = (pageNumber - 1) * booksPerPage;
-        var endingIndex = pageNumber * booksPerPage;
-        var numberOfPages = Math.ceil(books.length/booksPerPage);
-        var books = books.slice(startingIndex, endingIndex);
-        res.render("books/index", { pageNumber: pageNumber, numberOfPages: numberOfPages, books: books, title: "All Books"});
+        var page = parseInt(req.query.pageNumber);
+        var limit = parseInt(req.query.limit);
+
+        var startingIndex = (page - 1) * limit;
+        var endingIndex = page * limit;
+        var numberOfPages = Math.ceil(books.length/limit);
+
+        var results = {}
+        results.limit = limit;
+        if(endingIndex < books.length) {
+        results.next = {
+          pageNumber: page + 1
+        }
+      }
+
+        if(startingIndex > 0) {
+          results.previous = {
+          pageNumber: page - 1
+        } 
+      }
+
+        books = books.slice(startingIndex, endingIndex);
+        console.log(books)
+        console.log("limit: " + limit)
+        console.log("page: " + page)
+        console.log("ending index: " + endingIndex)
+
+        res.render("books/index", { pageNumber: page, numberOfPages: numberOfPages, books: books, results: results, title: "All Books"});
       } else{
         res.render("books/index", { books: books, title: "All Books"});
       }

@@ -20,8 +20,12 @@ block content
       = book.genre
     a(href = "/books/" + book.id) Read More &rarr;
 
+  if results.previous != undefined
+    a(class="previously" href ='/books?pageNumber=' + results.previous.pageNumber + '&limit=' + results.limit)="<-"
   - var n = 1;
-  ul
-    while n < numberOfPages
+  ul.page-list
+    while n <= numberOfPages
       li
-        a(href ='/books?pageNumber=' + n)= n++
+        a(href ='/books?pageNumber=' + n + '&limit=' + results.limit)= n++
+  if results.next != undefined
+    a(class="tobenext" href ='/books?pageNumber=' + results.next.pageNumber + '&limit=' + results.limit)="->"
