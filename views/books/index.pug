@@ -19,13 +19,13 @@ block content
     p Genre 
       = book.genre
     a(href = "/books/" + book.id) Read More &rarr;
-
-  if results.previous != undefined
-    a(class="previously" href ='/books?pageNumber=' + results.previous.pageNumber + '&limit=' + results.limit)="<-"
-  - var n = 1;
-  ul.page-list
-    while n <= numberOfPages
-      li
-        a(href ='/books?pageNumber=' + n + '&limit=' + results.limit)= n++
-  if results.next != undefined
-    a(class="tobenext" href ='/books?pageNumber=' + results.next.pageNumber + '&limit=' + results.limit)="->"
+  .pagination
+    if results.previous != undefined
+      a(class="previous round" href ='/books?pageNumber=' + results.previous.pageNumber + '&limit=' + results.limit) &#8249;
+    - var n = 1;
+    ul.page-list
+      while n <= numberOfPages
+        li
+          a(href ='/books?pageNumber=' + n + '&limit=' + results.limit)= n++
+    if results.next != undefined
+      a(class="next round" href ='/books?pageNumber=' + results.next.pageNumber + '&limit=' + results.limit) &#8250;
