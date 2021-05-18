@@ -25,8 +25,15 @@ router.get('/', function(req, res, next) {
       
       if(req.query.pageNumber) {
         //*parse into integer to do math
-        var page = parseInt(req.query.pageNumber);
-        var limit = parseInt(req.query.limit);
+        var page = parseInt(req.query.pageNumber);//page number if included in url query.
+      }else {
+        var page = 1;//default page number if it isn't in the url query.
+      }
+      if(req.query.limit){
+        var limit = parseInt(req.query.limit);//for future enhancement.  User will be able to select how many books appear in a page.
+      }else{
+        var limit = 5;//default value
+      }
         //*calculate variables needed for pagination
         var startingIndex = (page - 1) * limit;
         var endingIndex = page * limit;
@@ -55,9 +62,7 @@ router.get('/', function(req, res, next) {
         console.log("ending index: " + endingIndex)
         //sending variables and their properties for use in index.pug
         res.render("books/index", { pageNumber: page, numberOfPages: numberOfPages, books: books, results: results, title: "All Books"});
-      } else{
-        res.render("books/index", { books: books, title: "All Books"});
-      }
+      
 
    }).catch(function(error) {
      console.log(error);

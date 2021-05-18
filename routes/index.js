@@ -4,7 +4,7 @@ var book = require('../models/book');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect("/books")
+  res.redirect("/books?pageNumber=1")
    var all_books = function (req, res, next) {
     book.findAll().then(Books => {
       console.log(all_books);

@@ -6,33 +6,34 @@ block content
   .add-new
     a(href="/books/new") Add New Book to List
 
-  form(action="")
-    label(for='search') Search: 
-    input#search(name='search' type='text') 
-    input.hide(name='pageNumber' value=results.pageNumber)
-    input.hide(name='limit' value=results.limit)
-    button(type="submit") Submit
-  if books.length == 0
-    h2 No Books Found.
-    a(href="/books?pageNumber=1" +'&limit=' + results.limit type="button")="Back to List"
-  each book in books
-    h2= book.title
-    p By 
-      = book.author
-    p Genre 
-      = book.genre
-    a(href = "/books/" + book.id) Read More &rarr;
-  //-pagination for book list//
-  .pagination
-    //-   if results.previous is not undefined, make previous button with this link
-    if results.previous != undefined
-      a(class="previous round" href ='/books?pageNumber=' + results.previous.pageNumber + '&limit=' + results.limit) &#8249;
-    - var n = 1;
-    ul.page-list
-      //-while n is less than or equal to number of pages, make sequential numbers
-      while n <= numberOfPages
-        li
-          a(href ='/books?pageNumber=' + n + '&limit=' + results.limit)= n++
-    //-make next button with link if results.next not undefined
-    if results.next != undefined
-      a(class="next round" href ='/books?pageNumber=' + results.next.pageNumber + '&limit=' + results.limit) &#8250;
+  if results
+    form(action="")
+      label(for='search') Search: 
+      input#search(name='search' type='text') 
+      input.hide(name='pageNumber' value=results.pageNumber)
+      input.hide(name='limit' value=results.limit)
+      button(type="submit") Submit
+    if books.length == 0
+      h2 No Books Found.
+      a(href="/books?pageNumber=1" +'&limit=' + results.limit type="button")="Back to List"
+    each book in books
+      h2= book.title
+      p By 
+        = book.author
+      p Genre 
+        = book.genre
+      a(href = "/books/" + book.id) Read More &rarr;
+    //-pagination for book list//
+    .pagination
+      //-   if results.previous is not undefined, make previous button with this link
+      if results.previous != undefined
+        a(class="previous round" href ='/books?pageNumber=' + results.previous.pageNumber + '&limit=' + results.limit) &#8249;
+      - var n = 1;
+      ul.page-list
+        //-while n is less than or equal to number of pages, make sequential numbers
+        while n <= numberOfPages
+          li
+            a(href ='/books?pageNumber=' + n + '&limit=' + results.limit)= n++
+      //-make next button with link if results.next not undefined
+      if results.next != undefined
+        a(class="next round" href ='/books?pageNumber=' + results.next.pageNumber + '&limit=' + results.limit) &#8250;
