@@ -74,7 +74,7 @@ router.get('/new', function(req, res, next) {
   res.render("books/new-book", {book: {}, title: "New Book"});
 });
 /*posts a new book to the database*/
-router.post('/',function(req, res, next) {
+router.post('/new',function(req, res, next) {
    Book.create(req.body).then(function(book) {
      res.redirect("/books/");     
    }).catch(function(error){
@@ -93,7 +93,7 @@ router.get("/:id", function(req, res, next){
   Book.findByPk(req.params.id).then(function(book){
     if(book) {//if book exists
       //*takes book and returns show.pug while passing in the found book data to pug page
-      res.render("books/show", {book: book, title: book.title});
+      res.render("books/update-book", {book: book, title: book.title});
     } else {
       //*if doesn't exist return 404 error not found
       res.send(404);
@@ -103,24 +103,8 @@ router.get("/:id", function(req, res, next){
    });
 });
 
-
-/* Edit Book List. */
-router.get("/:id/edit", function(req, res, next){
-    //*finds id of book that was in param
-   Book.findByPk(req.params.id).then(function(book){
-     if(book) {
-       //*if book exists, go to edit book page
-       res.render("books/edit", {book: book, title: "Edit Books"});      
-     } else {
-       res.send(404);
-     }
-   }).catch(function(error){
-       res.send(500, error);
-    });
- });
-
 /*updates book info in the database*/
-router.put('/:id', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
   console.log(req.params.id)
    //*finds id of book that was in param
    Book.findByPk(req.params.id).then(function(book){
@@ -138,7 +122,7 @@ router.put('/:id', (req, res, next) => {
         if(error.name === "SequelizeValidationError") {
           var book = Book.build(req.body);
           book.id = req.params.id;
-          res.render("books/edit", {book: book, errors: error.errors, title: "Edit Books"})
+          res.render("books/update-books", {book: book, errors: error.errors, title: "Update Books"})
         } else {
           throw error;
         }
@@ -147,22 +131,8 @@ router.put('/:id', (req, res, next) => {
      });
   });
 
-  /*prompts if you are sure you want to delete the book*/
-  router.get("/:id/delete", function(req, res, next){
-    //*finds id of book that was in param
-    Book.findByPk(req.params.id).then(function(book){
-      if(book) {
-        res.render("books/delete", {book: book, title: "Delete Book"});
-      } else {
-        res.send(404);
-      }
-    }).catch(function(error){
-        res.send(500, error);
-     });
-  });
-
 /*deletes a book*/
-router.delete('/:id', (req, res, next) => {
+router.post('/:id/delete', (req, res, next) => {
    //*finds id of book that was in param
    Book.findByPk(req.params.id).then(function(book){  
       if(book) {

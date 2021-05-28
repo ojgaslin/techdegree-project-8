@@ -4,7 +4,7 @@ block content
   h1= title
   p Listing all books
   .add-new
-    a(href="/books/new") Add New Book to List
+    a.button(href="/books/new") Add New Book to List
 
   if results
     form(action="")
@@ -16,13 +16,18 @@ block content
     if books.length == 0
       h2 No Books Found.
       a(href="/books?pageNumber=1" +'&limit=' + results.limit type="button")="Back to List"
-    each book in books
-      h2= book.title
-      p By 
-        = book.author
-      p Genre 
-        = book.genre
-      a(href = "/books/" + book.id) Read More &rarr;
+    table
+      th Title
+      th Author
+      th Genre
+      th Year
+      each book in books
+        tr
+          td
+            a(href = "/books/" + book.id + "/")=book.title
+          td=book.author
+          td=book.genre
+          td=book.year
     //-pagination for book list//
     .pagination
       //-   if results.previous is not undefined, make previous button with this link
