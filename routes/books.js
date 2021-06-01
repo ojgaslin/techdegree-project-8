@@ -96,7 +96,7 @@ router.get("/:id", function(req, res, next){
       res.render("books/update-book", {book: book, title: book.title});
     } else {
       //*if doesn't exist return 404 error not found
-      res.send(404);
+      next();
     }
   }).catch(function(error){
       res.send(500, error);
@@ -112,7 +112,7 @@ router.post('/:id', (req, res, next) => {
         //*if book exists, return updated book
         return book.update(req.body);
       } else {
-        res.send(404);
+        next()
       }
     }).then(function(book){
       //go back to book list
@@ -138,7 +138,7 @@ router.post('/:id/delete', (req, res, next) => {
       if(book) {
         return book.destroy();
       } else {
-        res.send(404);
+        next()
       }
     }).then(function(){
       res.redirect("/books");    
@@ -147,4 +147,5 @@ router.post('/:id/delete', (req, res, next) => {
      });
   });
  
+
   module.exports = router;
